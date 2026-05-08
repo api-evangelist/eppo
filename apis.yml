@@ -1,0 +1,29 @@
+aid: eppo
+url: https://raw.githubusercontent.com/api-evangelist/eppo/refs/heads/main/apis.yml
+name: Eppo
+x-type: company
+description: >-
+  Eppo is a warehouse-native experimentation platform with feature flags, randomization SDKs, and statistical analysis run directly on the company's data warehouse (Snowflake, BigQuery, Databricks).
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - A/B Testing
+  - Experimentation
+  - Warehouse-Native
+  - Feature Flags
+  - Analytics
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://www.geteppo.com/
+  - type: Plans
+    url: plans/eppo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/eppo-rate-limits.yml
+  - type: FinOps
+    url: finops/eppo-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
