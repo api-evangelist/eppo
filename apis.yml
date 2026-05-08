@@ -3,21 +3,39 @@ url: https://raw.githubusercontent.com/api-evangelist/eppo/refs/heads/main/apis.
 name: Eppo
 x-type: company
 description: >-
-  Eppo is a warehouse-native experimentation platform with feature flags, randomization SDKs, and statistical analysis run directly on the company's data warehouse (Snowflake, BigQuery, Databricks).
+  Eppo is a next-generation feature flagging and experimentation platform built for warehouse-native analytics and rigorous experimentation.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - A/B Testing
   - Experimentation
-  - Warehouse-Native
   - Feature Flags
+  - AB Testing
   - Analytics
+  - Statistics
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: eppo:eppo-cloud-api
+    name: Eppo Cloud REST API
+    description: >-
+      Eppo Cloud REST API provides programmatic access to feature flags, experiments, allocations, metrics, and assignments configuration.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://eppo.cloud/api/docs
+    baseURL: https://eppo.cloud/api
+    tags:
+      - Feature Flags
+      - Experimentation
+      - REST
+    properties:
+      - type: Documentation
+        url: https://eppo.cloud/api/docs
+      - type: Developers
+        url: https://docs.geteppo.com/
 common:
   - type: Website
     url: https://www.geteppo.com/
+  - type: Documentation
+    url: https://eppo.cloud/api/docs
   - type: Plans
     url: plans/eppo-plans-pricing.yml
   - type: RateLimits
