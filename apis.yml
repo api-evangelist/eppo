@@ -1,7 +1,7 @@
 aid: eppo
 url: https://raw.githubusercontent.com/api-evangelist/eppo/refs/heads/main/apis.yml
 name: Eppo
-x-type: company
+kind: company
 description: >-
   Eppo is a next-generation feature flagging and experimentation platform built for warehouse-native analytics and rigorous experimentation.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
