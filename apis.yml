@@ -32,6 +32,10 @@ apis:
       - type: Developers
         url: https://docs.geteppo.com/
 common:
+  - type: GitHubOrganization
+    url: https://github.com/eppo-exp
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/geteppo
   - type: Website
     url: https://www.geteppo.com/
   - type: Documentation
