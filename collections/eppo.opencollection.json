@@ -1,0 +1,274 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Eppo Cloud REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Eppo-Token",
+      "value": "{{X-Eppo-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List feature flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eppo.cloud/api/v1/flags"
+          },
+          "docs": "List feature flags"
+        },
+        {
+          "info": {
+            "name": "Create a feature flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://eppo.cloud/api/v1/flags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a feature flag"
+        },
+        {
+          "info": {
+            "name": "Get a feature flag by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eppo.cloud/api/v1/flags/:flagKey",
+            "params": [
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a feature flag by key"
+        },
+        {
+          "info": {
+            "name": "Update a feature flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://eppo.cloud/api/v1/flags/:flagKey",
+            "params": [
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a feature flag"
+        },
+        {
+          "info": {
+            "name": "Delete a feature flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://eppo.cloud/api/v1/flags/:flagKey",
+            "params": [
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a feature flag"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Allocations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List allocations for a flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eppo.cloud/api/v1/flags/:flagKey/allocations",
+            "params": [
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List allocations for a flag"
+        },
+        {
+          "info": {
+            "name": "Create an allocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://eppo.cloud/api/v1/flags/:flagKey/allocations",
+            "params": [
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an allocation"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Experiments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List experiments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eppo.cloud/api/v1/experiments",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List experiments"
+        },
+        {
+          "info": {
+            "name": "Create an experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://eppo.cloud/api/v1/experiments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an experiment"
+        },
+        {
+          "info": {
+            "name": "Get experiment detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eppo.cloud/api/v1/experiments/:experimentId",
+            "params": [
+              {
+                "name": "experimentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get experiment detail"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eppo.cloud/api/v1/metrics"
+          },
+          "docs": "List metrics"
+        },
+        {
+          "info": {
+            "name": "Create a metric definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://eppo.cloud/api/v1/metrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a metric definition"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assignments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ingest assignment events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://eppo.cloud/api/v1/assignments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ingest assignment events"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
