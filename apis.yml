@@ -4,7 +4,7 @@ name: Eppo
 kind: company
 description: >-
   Eppo is a next-generation feature flagging and experimentation platform built for warehouse-native analytics and rigorous experimentation.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Experimentation
   - Feature Flags
@@ -19,7 +19,7 @@ apis:
     name: Eppo Cloud REST API
     description: >-
       Eppo Cloud REST API provides programmatic access to feature flags, experiments, allocations, metrics, and assignments configuration.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://eppo.cloud/api/docs
     baseURL: https://eppo.cloud/api
     tags:
