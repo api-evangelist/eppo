@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/eppo-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: eppoToken
+  type: apiKey
+  in: header
+  parameter: X-Eppo-Token
+  description: Eppo REST API key created in Admin > API Keys. Distinct from Eppo SDK keys used
+    to connect SDK clients.
+  sources:
+  - openapi/eppo-openapi.yml

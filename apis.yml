@@ -32,6 +32,12 @@ apis:
       - type: Developers
         url: https://docs.geteppo.com/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/eppo-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/eppo-domain-security.yml
+  - type: Authentication
+    url: authentication/eppo-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/eppo-exp
   - type: LinkedIn
@@ -46,6 +52,8 @@ common:
     url: rate-limits/eppo-rate-limits.yml
   - type: FinOps
     url: finops/eppo-finops.yml
+  - url: https://www.geteppo.com/blog
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
