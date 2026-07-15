@@ -32,6 +32,8 @@ apis:
       - type: Developers
         url: https://docs.geteppo.com/
 common:
+  - type: AgenticAccess
+    url: agentic-access/eppo-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/eppo-vulnerability-disclosure.yml
   - type: DomainSecurity
