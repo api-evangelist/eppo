@@ -1,0 +1,80 @@
+openapi: 3.1.0
+info:
+  title: Eppo Cloud REST Allocations API
+  version: 1.0.0
+  description: REST API for the Eppo feature flagging and experimentation platform. Used to manage feature flags, allocations, experiments, metrics, assignments, and platform configuration outside of the Eppo web UI. Best-effort spec derived from publicly documented surfaces; not exhaustive.
+  contact:
+    name: Eppo Support
+    url: https://docs.geteppo.com/
+  license:
+    name: Proprietary
+servers:
+- url: https://eppo.cloud/api/v1
+  description: Eppo Cloud production base URL
+security:
+- eppoToken: []
+tags:
+- name: Allocations
+paths:
+  /flags/{flagKey}/allocations:
+    parameters:
+    - in: path
+      name: flagKey
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Allocations
+      summary: List allocations for a flag
+      operationId: listAllocations
+      responses:
+        '200':
+          description: Allocations list
+    post:
+      tags:
+      - Allocations
+      summary: Create an allocation
+      operationId: createAllocation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Allocation'
+      responses:
+        '201':
+          description: Allocation created
+components:
+  schemas:
+    Allocation:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        flagKey:
+          type: string
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        doLog:
+          type: boolean
+        rules:
+          type: array
+          items:
+            type: object
+        splits:
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    eppoToken:
+      type: apiKey
+      in: header
+      name: X-Eppo-Token
+      description: Eppo REST API key created in Admin > API Keys. Distinct from Eppo SDK keys used to connect SDK clients.

@@ -1,0 +1,52 @@
+openapi: 3.1.0
+info:
+  title: Eppo Cloud REST Allocations Assignments API
+  version: 1.0.0
+  description: REST API for the Eppo feature flagging and experimentation platform. Used to manage feature flags, allocations, experiments, metrics, assignments, and platform configuration outside of the Eppo web UI. Best-effort spec derived from publicly documented surfaces; not exhaustive.
+  contact:
+    name: Eppo Support
+    url: https://docs.geteppo.com/
+  license:
+    name: Proprietary
+servers:
+- url: https://eppo.cloud/api/v1
+  description: Eppo Cloud production base URL
+security:
+- eppoToken: []
+tags:
+- name: Assignments
+paths:
+  /assignments:
+    post:
+      tags:
+      - Assignments
+      summary: Ingest assignment events
+      operationId: ingestAssignments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  experiment:
+                    type: string
+                  subject:
+                    type: string
+                  variation:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+      responses:
+        '202':
+          description: Assignments accepted
+components:
+  securitySchemes:
+    eppoToken:
+      type: apiKey
+      in: header
+      name: X-Eppo-Token
+      description: Eppo REST API key created in Admin > API Keys. Distinct from Eppo SDK keys used to connect SDK clients.

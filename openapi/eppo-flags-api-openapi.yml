@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Eppo Cloud REST Allocations Flags API
+  version: 1.0.0
+  description: REST API for the Eppo feature flagging and experimentation platform. Used to manage feature flags, allocations, experiments, metrics, assignments, and platform configuration outside of the Eppo web UI. Best-effort spec derived from publicly documented surfaces; not exhaustive.
+  contact:
+    name: Eppo Support
+    url: https://docs.geteppo.com/
+  license:
+    name: Proprietary
+servers:
+- url: https://eppo.cloud/api/v1
+  description: Eppo Cloud production base URL
+security:
+- eppoToken: []
+tags:
+- name: Flags
+paths:
+  /flags:
+    get:
+      tags:
+      - Flags
+      summary: List feature flags
+      operationId: listFlags
+      responses:
+        '200':
+          description: Flags list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Flag'
+    post:
+      tags:
+      - Flags
+      summary: Create a feature flag
+      operationId: createFlag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Flag'
+      responses:
+        '201':
+          description: Flag created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flag'
+  /flags/{flagKey}:
+    parameters:
+    - in: path
+      name: flagKey
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Flags
+      summary: Get a feature flag by key
+      operationId: getFlag
+      responses:
+        '200':
+          description: Flag detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flag'
+    patch:
+      tags:
+      - Flags
+      summary: Update a feature flag
+      operationId: updateFlag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Flag'
+      responses:
+        '200':
+          description: Updated flag
+    delete:
+      tags:
+      - Flags
+      summary: Delete a feature flag
+      operationId: deleteFlag
+      responses:
+        '204':
+          description: Flag deleted
+components:
+  schemas:
+    Flag:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        variationType:
+          type: string
+          enum:
+          - BOOLEAN
+          - STRING
+          - NUMERIC
+          - JSON
+        variations:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                oneOf:
+                - type: boolean
+                - type: string
+                - type: number
+                - type: object
+  securitySchemes:
+    eppoToken:
+      type: apiKey
+      in: header
+      name: X-Eppo-Token
+      description: Eppo REST API key created in Admin > API Keys. Distinct from Eppo SDK keys used to connect SDK clients.

@@ -1,0 +1,109 @@
+openapi: 3.1.0
+info:
+  title: Eppo Cloud REST Allocations Experiments API
+  version: 1.0.0
+  description: REST API for the Eppo feature flagging and experimentation platform. Used to manage feature flags, allocations, experiments, metrics, assignments, and platform configuration outside of the Eppo web UI. Best-effort spec derived from publicly documented surfaces; not exhaustive.
+  contact:
+    name: Eppo Support
+    url: https://docs.geteppo.com/
+  license:
+    name: Proprietary
+servers:
+- url: https://eppo.cloud/api/v1
+  description: Eppo Cloud production base URL
+security:
+- eppoToken: []
+tags:
+- name: Experiments
+paths:
+  /experiments:
+    get:
+      tags:
+      - Experiments
+      summary: List experiments
+      operationId: listExperiments
+      parameters:
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum:
+          - draft
+          - running
+          - completed
+          - archived
+      responses:
+        '200':
+          description: Experiments list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Experiment'
+    post:
+      tags:
+      - Experiments
+      summary: Create an experiment
+      operationId: createExperiment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Experiment'
+      responses:
+        '201':
+          description: Experiment created
+  /experiments/{experimentId}:
+    parameters:
+    - in: path
+      name: experimentId
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Experiments
+      summary: Get experiment detail
+      operationId: getExperiment
+      responses:
+        '200':
+          description: Experiment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experiment'
+components:
+  schemas:
+    Experiment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        primaryMetricId:
+          type: string
+        subjectEntityKey:
+          type: string
+        variations:
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    eppoToken:
+      type: apiKey
+      in: header
+      name: X-Eppo-Token
+      description: Eppo REST API key created in Admin > API Keys. Distinct from Eppo SDK keys used to connect SDK clients.
