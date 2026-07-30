@@ -4,7 +4,20 @@ name: Eppo
 kind: company
 description: >-
   Eppo is a next-generation feature flagging and experimentation platform built for warehouse-native analytics and rigorous experimentation.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/eppo.png
 tags:
   - Experimentation
   - Feature Flags
@@ -15,22 +28,73 @@ created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
 apis:
-  - aid: eppo:eppo-cloud-api
-    name: Eppo Cloud REST API
-    description: >-
-      Eppo Cloud REST API provides programmatic access to feature flags, experiments, allocations, metrics, and assignments configuration.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://eppo.cloud/api/docs
-    baseURL: https://eppo.cloud/api
-    tags:
-      - Feature Flags
-      - Experimentation
-      - REST
-    properties:
-      - type: Documentation
-        url: https://eppo.cloud/api/docs
-      - type: Developers
-        url: https://docs.geteppo.com/
+- aid: eppo:eppo-cloud-api
+  name: Eppo Cloud REST API
+  description: >-
+    Eppo Cloud REST API provides programmatic access to feature flags, experiments, allocations, metrics,
+    and assignments configuration.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://eppo.cloud/api/docs
+  baseURL: https://eppo.cloud/api
+  tags:
+  - Feature Flags
+  - Experimentation
+  - REST
+  properties:
+  - type: Documentation
+    url: https://eppo.cloud/api/docs
+  - type: Developers
+    url: https://docs.geteppo.com/
+- aid: eppo:eppo-allocations-api
+  name: Eppo Allocations API
+  description: The Allocations API from Eppo — 1 operation(s) for allocations.
+  humanURL: https://eppo.cloud/api/docs
+  baseURL: https://eppo.cloud/api
+  tags:
+  - Allocations
+  properties:
+  - type: OpenAPI
+    url: openapi/eppo-allocations-api-openapi.yml
+- aid: eppo:eppo-assignments-api
+  name: Eppo Assignments API
+  description: The Assignments API from Eppo — 1 operation(s) for assignments.
+  humanURL: https://eppo.cloud/api/docs
+  baseURL: https://eppo.cloud/api
+  tags:
+  - Assignments
+  properties:
+  - type: OpenAPI
+    url: openapi/eppo-assignments-api-openapi.yml
+- aid: eppo:eppo-experiments-api
+  name: Eppo Experiments API
+  description: The Experiments API from Eppo — 2 operation(s) for experiments.
+  humanURL: https://eppo.cloud/api/docs
+  baseURL: https://eppo.cloud/api
+  tags:
+  - Experiments
+  properties:
+  - type: OpenAPI
+    url: openapi/eppo-experiments-api-openapi.yml
+- aid: eppo:eppo-flags-api
+  name: Eppo Flags API
+  description: The Flags API from Eppo — 2 operation(s) for flags.
+  humanURL: https://eppo.cloud/api/docs
+  baseURL: https://eppo.cloud/api
+  tags:
+  - Flags
+  properties:
+  - type: OpenAPI
+    url: openapi/eppo-flags-api-openapi.yml
+- aid: eppo:eppo-metrics-api
+  name: Eppo Metrics API
+  description: The Metrics API from Eppo — 1 operation(s) for metrics.
+  humanURL: https://eppo.cloud/api/docs
+  baseURL: https://eppo.cloud/api
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/eppo-metrics-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/eppo-agentic-access.yml
