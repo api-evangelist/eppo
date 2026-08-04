@@ -1,0 +1,317 @@
+openapi: 3.1.0
+info:
+  title: Eppo Cloud REST API
+  version: "1.0.0"
+  description: >-
+    REST API for the Eppo feature flagging and experimentation platform. Used
+    to manage feature flags, allocations, experiments, metrics, assignments,
+    and platform configuration outside of the Eppo web UI. Best-effort spec
+    derived from publicly documented surfaces; not exhaustive.
+  contact:
+    name: Eppo Support
+    url: https://docs.geteppo.com/
+  license:
+    name: Proprietary
+servers:
+  - url: https://eppo.cloud/api/v1
+    description: Eppo Cloud production base URL
+security:
+  - eppoToken: []
+tags:
+  - name: Flags
+  - name: Allocations
+  - name: Experiments
+  - name: Metrics
+  - name: Assignments
+paths:
+  /flags:
+    get:
+      tags: [Flags]
+      summary: List feature flags
+      operationId: listFlags
+      responses:
+        "200":
+          description: Flags list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Flag"
+    post:
+      tags: [Flags]
+      summary: Create a feature flag
+      operationId: createFlag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Flag"
+      responses:
+        "201":
+          description: Flag created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Flag"
+  /flags/{flagKey}:
+    parameters:
+      - in: path
+        name: flagKey
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Flags]
+      summary: Get a feature flag by key
+      operationId: getFlag
+      responses:
+        "200":
+          description: Flag detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Flag"
+    patch:
+      tags: [Flags]
+      summary: Update a feature flag
+      operationId: updateFlag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Flag"
+      responses:
+        "200":
+          description: Updated flag
+    delete:
+      tags: [Flags]
+      summary: Delete a feature flag
+      operationId: deleteFlag
+      responses:
+        "204":
+          description: Flag deleted
+  /flags/{flagKey}/allocations:
+    parameters:
+      - in: path
+        name: flagKey
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Allocations]
+      summary: List allocations for a flag
+      operationId: listAllocations
+      responses:
+        "200":
+          description: Allocations list
+    post:
+      tags: [Allocations]
+      summary: Create an allocation
+      operationId: createAllocation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Allocation"
+      responses:
+        "201":
+          description: Allocation created
+  /experiments:
+    get:
+      tags: [Experiments]
+      summary: List experiments
+      operationId: listExperiments
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [draft, running, completed, archived]
+      responses:
+        "200":
+          description: Experiments list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Experiment"
+    post:
+      tags: [Experiments]
+      summary: Create an experiment
+      operationId: createExperiment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Experiment"
+      responses:
+        "201":
+          description: Experiment created
+  /experiments/{experimentId}:
+    parameters:
+      - in: path
+        name: experimentId
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Experiments]
+      summary: Get experiment detail
+      operationId: getExperiment
+      responses:
+        "200":
+          description: Experiment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Experiment"
+  /metrics:
+    get:
+      tags: [Metrics]
+      summary: List metrics
+      operationId: listMetrics
+      responses:
+        "200":
+          description: Metrics list
+    post:
+      tags: [Metrics]
+      summary: Create a metric definition
+      operationId: createMetric
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                aggregation:
+                  type: string
+                  enum: [count, sum, mean, min, max]
+                sql:
+                  type: string
+                entityKey:
+                  type: string
+      responses:
+        "201":
+          description: Metric created
+  /assignments:
+    post:
+      tags: [Assignments]
+      summary: Ingest assignment events
+      operationId: ingestAssignments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  experiment:
+                    type: string
+                  subject:
+                    type: string
+                  variation:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+      responses:
+        "202":
+          description: Assignments accepted
+components:
+  securitySchemes:
+    eppoToken:
+      type: apiKey
+      in: header
+      name: X-Eppo-Token
+      description: >-
+        Eppo REST API key created in Admin > API Keys. Distinct from Eppo SDK
+        keys used to connect SDK clients.
+  schemas:
+    Flag:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        variationType:
+          type: string
+          enum: [BOOLEAN, STRING, NUMERIC, JSON]
+        variations:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                oneOf:
+                  - type: boolean
+                  - type: string
+                  - type: number
+                  - type: object
+    Allocation:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        flagKey:
+          type: string
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        doLog:
+          type: boolean
+        rules:
+          type: array
+          items:
+            type: object
+        splits:
+          type: array
+          items:
+            type: object
+    Experiment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        primaryMetricId:
+          type: string
+        subjectEntityKey:
+          type: string
+        variations:
+          type: array
+          items:
+            type: object

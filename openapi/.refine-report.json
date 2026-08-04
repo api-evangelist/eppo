@@ -1,0 +1,22 @@
+{
+  "provider": "eppo",
+  "sources": [
+    "eppo-allocations-api-openapi.yml",
+    "eppo-assignments-api-openapi.yml",
+    "eppo-experiments-api-openapi.yml",
+    "eppo-flags-api-openapi.yml",
+    "eppo-metrics-api-openapi.yml"
+  ],
+  "outputs": [
+    "eppo-allocations-api-openapi.yml",
+    "eppo-assignments-api-openapi.yml",
+    "eppo-experiments-api-openapi.yml",
+    "eppo-flags-api-openapi.yml",
+    "eppo-metrics-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
