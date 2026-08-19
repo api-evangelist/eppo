@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Eppo Cloud REST Allocations Flags API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Eppo-Token",
+      "value": "{{X-Eppo-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List feature flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eppo.cloud/api/v1/flags"
+          },
+          "docs": "List feature flags"
+        },
+        {
+          "info": {
+            "name": "Create a feature flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://eppo.cloud/api/v1/flags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a feature flag"
+        },
+        {
+          "info": {
+            "name": "Get a feature flag by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eppo.cloud/api/v1/flags/:flagKey",
+            "params": [
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a feature flag by key"
+        },
+        {
+          "info": {
+            "name": "Update a feature flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://eppo.cloud/api/v1/flags/:flagKey",
+            "params": [
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a feature flag"
+        },
+        {
+          "info": {
+            "name": "Delete a feature flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://eppo.cloud/api/v1/flags/:flagKey",
+            "params": [
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a feature flag"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

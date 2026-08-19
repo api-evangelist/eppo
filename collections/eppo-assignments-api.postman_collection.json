@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "0c913c21-3bcf-4efa-8766-0812ea6e0bd4",
+      "name": "Assignments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c29c5b00-8403-4d8f-8714-3fe2ce6a05ae",
+          "name": "Ingest assignment events",
+          "request": {
+            "name": "Ingest assignment events",
+            "description": {},
+            "url": {
+              "path": [
+                "assignments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"experiment\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"variation\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  },\n  {\n    \"experiment\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"variation\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "daf7805f-cd01-4d03-a387-57d73a6a7e03",
+              "name": "Assignments accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Eppo-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"experiment\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"variation\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  },\n  {\n    \"experiment\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"variation\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://eppo.cloud/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Eppo-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cf932798-9226-4461-9ff9-4078272b0dbe",
+    "name": "Eppo Cloud REST Allocations Assignments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Eppo feature flagging and experimentation platform. Used to manage feature flags, allocations, experiments, metrics, assignments, and platform configuration outside of the Eppo web UI. Best-effort spec derived from publicly documented surfaces; not exhaustive.\n\nContact Support:\n Name: Eppo Support",
+      "type": "text/plain"
+    }
+  }
+}

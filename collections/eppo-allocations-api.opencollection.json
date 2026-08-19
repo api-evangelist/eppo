@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Eppo Cloud REST Allocations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Eppo-Token",
+      "value": "{{X-Eppo-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Allocations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List allocations for a flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eppo.cloud/api/v1/flags/:flagKey/allocations",
+            "params": [
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List allocations for a flag"
+        },
+        {
+          "info": {
+            "name": "Create an allocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://eppo.cloud/api/v1/flags/:flagKey/allocations",
+            "params": [
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an allocation"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
