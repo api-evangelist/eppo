@@ -115,6 +115,9 @@ apis:
   - type: OpenAPI
     url: openapi/eppo-metrics-api-openapi.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/eppo-capability-edges.yml
+    name: Eppo Business Capability Map
   - type: AgenticAccess
     url: agentic-access/eppo-agentic-access.yml
   - type: VulnerabilityDisclosure
