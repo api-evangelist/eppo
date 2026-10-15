@@ -16,3 +16,15 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: eppo-contentful-own
+  label: Contentful (own)
+  partner: contentful
+  partner_name: Contentful (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.contentful.com/marketplace/eppo/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

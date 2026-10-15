@@ -1,6 +1,7 @@
 generated: '2026-10-14'
 method: searched
 checked:
+- contentful/integrations/contentful-integration-edges.yml
 - datadog/integrations/datadog-integration-edges.yml
 source:
 - datadog/integrations/datadog-integration-edges.yml
@@ -22,3 +23,19 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Configuration & Deployment
+- partner_name: Contentful (own)
+  partner: contentful
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.contentful.com/marketplace/eppo/
+  mirror_of: contentful/integrations/contentful-integration-edges.yml
+  apps:
+  - Eppo
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
